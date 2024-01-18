@@ -5,14 +5,17 @@ from.forms import BookingForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
+from django.contrib.auth import logout
+
 
 User = get_user_model()
 # Create your views here.
 
+@login_required(login_url='/')
 def index(request):
     return render(request,'index.html')
 
-
+@login_required(login_url='/')
 def about(request):
     departments = Departments.objects.all()
     doctors = Doctors.objects.all()
@@ -41,7 +44,7 @@ def doctors(request):
 
 
 
-
+@login_required(login_url='/')
 def contact(request):
    
     context = {
@@ -82,3 +85,8 @@ def login_view(request):
         else:
             return redirect('signup')
     return render(request,'login.html')
+
+@login_required(login_url='/')
+def LogoutView(request):
+    logout(request)
+    return redirect('home')
