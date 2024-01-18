@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}
+About
+{% endblock %}
+
+
+{% block content %}
+<h1 class="text-center">About</h1>
+<div class="container w-300 text-center p-5  my-10 bg-info">
+    <section>
+        <h2>Our Mission</h2>
+        <p>Describe your medical center's mission and goals here.</p>
+    </section>
+
+    <section>
+        <h2>Departments</h2>
+        <ul>
+            {% for department in departments %}
+                <li>{{ department.dep_name }} - {{ department.dep_description }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section>
+        <h2>Our Doctors</h2>
+        <ul>
+            {% for doctor in doctors %}
+                <li>{{ doctor.doc_name }} - {{ doctor.doc_spec }} - Department: {{ doctor.dep_name.dep_name }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+   
+
+    <footer>
+        <p>Contact us at: your@email.com</p>
+    </footer>
+</div>  
+    {% endblock %}
+</body>
+</html>
